@@ -13,58 +13,53 @@
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app-javascript">
+        <p>Total: <span id="total"></span> </p>
+        <p>Preço: <span id="preco"></span> </p>
+        <button id="button">Comprar</button>
+    </div>
+
+    <script type="application/javascript">
+        const total = document.getElementById('total');
+        const preco = document.getElementById('preco');
+        const button = document.getElementById('button');
+
+        let contador = 1;
+
+        function atualizarValores(contador) {
+            total.innerHTML = contador;
+            preco.innerHTML = contador * 250;
+        }
+
+        atualizarValores(contador);
+
+        function handleClick() {
+            contador += 1;
+            atualizarValores(contador);
+        }
+
+        button.addEventListener('click', handleClick);
+
+    </script>
+
+    <div id="app-react"></div>
 
     <script type="text/babel">
-
-        const Compras = () => {
-            const [contador, setContator] = React.useState(0);
-            console.log(contador);
-
-            function comprar() {
-                setContator(contador + 1);
-            }
+        const Comprar = () => {
+            const [contador, setContador] = React.useState(1);
 
             return (
                 <div>
-                    <button onClick={comprar}>Comprar</button>
                     <p>Total: {contador}</p>
-                    <p>Preço: R$ {contador * 250}</p>
+                    <p>Preço: {contador * 250}</p>
+                    <button onClick={() => setContador(contador + 1)}>Comprar</button>
                 </div>
             );
         }
 
-        const Button = () => {
-            function handleClick(event) {
-                console.log(event.target.innerText);
-            }
-
-            return <button onClick={handleClick}>Comprar</button>
-        }
-
-        const Titulo = () => {
-            const numero = Math.random() * 1000;
-
-            return <h1>Meu Título {numero}</h1>
-        }
-
-        const App = () => {
-            return (
-                <div> Meu App
-                    <Compras />
-                    <Titulo />
-                    <Button />
-                    <div>
-                        Compre aqui também
-                        <Button />
-                    </div>
-                </div>
-            )
-        }
-
-
-        ReactDOM.render(<App />, document.getElementById('app'));
+        ReactDOM.render(<Comprar />, document.getElementById('app-react'));
     </script>
+
 </body>
 
 </html>
