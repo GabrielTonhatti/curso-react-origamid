@@ -1,8 +1,8 @@
 import React from "react";
 
-const Links = () => {
+const Header = () => {
     return (
-        <div>
+        <ul>
             <ul>
                 <li>
                     <a href="/">Home</a>
@@ -11,8 +11,8 @@ const Links = () => {
                     <a href="/produtos">Produtos</a>{" "}
                 </li>
             </ul>
-        </div>
+        </ul>
     );
 };
 
-export default Links;
+export default Header;

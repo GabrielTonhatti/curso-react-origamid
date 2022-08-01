@@ -1,14 +1,12 @@
 import React from "react";
-import Links from "../Links/Links";
+import Titulo from "./Titulo";
 
 const Home = (props) => {
     return (
-        <div>
-            <Links />
-
-            <h1 style={props.cor}>{props.texto}</h1>
+        <section>
+            <Titulo texto="Home" />
             <p>Essa é a home do site</p>
-        </div>
+        </section>
     );
 };
 

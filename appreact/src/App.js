@@ -1,26 +1,18 @@
 import React from "react";
-import Home from "./Home/Home";
-import Produtos from "./Produtos/Produtos";
+import Header from "./Header";
+import Home from "./Home";
+import Produtos from "./Produtos";
 
 const App = () => {
     const { pathname } = window.location;
     console.log(pathname);
 
+    const Pagina = pathname === "/produtos" ? Produtos : Home;
+
     return (
         <div>
-            {pathname === "/" ? (
-                <Home texto="Home" cor={{ color: "green" }} />
-            ) : (
-                <Produtos
-                    cor={{ color: "green" }}
-                    texto="Produtos"
-                    estilo={{
-                        border: "1px solid #000",
-                        marginTop: "10px",
-                        padding: "10px",
-                    }}
-                />
-            )}
+            <Header />
+            <Pagina />
         </div>
     );
 };
