@@ -9,20 +9,18 @@ export const GlobalContext = React.createContext();
 // defina uma função chamada limparDados que é responsável por zerar os dados de produto
 // e exponha essa função no contexto global
 export const GlobalStorage = ({ children }) => {
-    const [produtos, setProdutos] = React.useState(null);
+    const [dados, setDados] = React.useState(null);
 
-    const buscarProdutos = async () => {
-        await fetch("https://ranekapi.origamid.dev/json/api/produto/")
+    React.useEffect(() => {
+        fetch("https://ranekapi.origamid.dev/json/api/produto/")
             .then((response) => response.json())
-            .then((data) => setProdutos(data));
-    };
+            .then((data) => setDados(data));
+    }, []);
 
-    const limparDados = () => setProdutos(null);
+    const limparDados = () => setDados(null);
 
     return (
-        <GlobalContext.Provider
-            value={{ produtos, buscarProdutos, limparDados }}
-        >
+        <GlobalContext.Provider value={{ dados, limparDados }}>
             {children}
         </GlobalContext.Provider>
     );
