@@ -2,46 +2,36 @@ import React from "react";
 import Produto from "./Produto";
 
 const App = () => {
-    const [dados, setDados] = React.useState(null);
-    const [preferencia, setPreferencia] = React.useState(null);
-
-    async function handleClick(text) {
-        const response = await fetch(
-            `https://ranekapi.origamid.dev/json/api/produto/${text}`
-        );
-
-        localStorage.setItem("produto", text);
-        const json = await response.json();
-        setDados(json);
-        setPreferencia(text);
-    }
+    const [produto, setProduto] = React.useState(null);
 
     React.useEffect(() => {
-        const preferenciaStorage = localStorage.getItem("produto");
+        const produtoLocal = localStorage.getItem("produto");
 
-        if (preferenciaStorage) {
-            handleClick(preferenciaStorage);
-        }
+        if (produtoLocal !== null) setProduto(produtoLocal);
 
-        console.log(preferenciaStorage);
+        console.log(produtoLocal);
     }, []);
+
+    React.useEffect(() => {
+        if (produto !== null) localStorage.setItem("produto", produto);
+
+        console.log(produto);
+    }, [produto]);
+
+    async function handleClick({ target }) {
+        setProduto(target.innerText);
+    }
 
     return (
         <div>
-            <h1>Preferência: {preferencia}</h1>
-            <button
-                style={{ margin: ".5rem" }}
-                onClick={(event) => handleClick(event.target.innerText)}
-            >
+            <h1>Preferência: {produto}</h1>
+            <button style={{ margin: "1rem" }} onClick={handleClick}>
                 notebook
             </button>
-            <button
-                style={{ margin: ".5rem" }}
-                onClick={(event) => handleClick(event.target.innerText)}
-            >
+            <button style={{ margin: "1rem" }} onClick={handleClick}>
                 smartphone
             </button>
-            {dados && <Produto dados={dados} />}
+            <Produto produto={produto} />
         </div>
     );
 };
