@@ -6,8 +6,25 @@ const Produto = () => {
 
     return (
         <div>
-            Produto: {global.contar}{" "}
-            <button onClick={() => global.adicionarDois()}>Adicionar</button>{" "}
+            <button onClick={() => global.buscarProdutos()}>
+                Buscar Produtos
+            </button>
+            <button
+                style={{ margin: ".5rem" }}
+                onClick={() => global.limparDados()}
+            >
+                Limpar Produtos
+            </button>
+            {global.produtos &&
+                global.produtos.map((produto) => (
+                    <div>
+                        <p>Nome: {produto.nome}</p>
+                        <p>Preço: R$ {produto.preco}</p>
+                        {produto.fotos.map((foto) => (
+                            <img src={foto.src} alt={foto.titulo} />
+                        ))}
+                    </div>
+                ))}
         </div>
     );
 };
