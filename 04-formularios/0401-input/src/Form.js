@@ -24,20 +24,22 @@ const Form = () => {
         console.log(form);
     }
 
-    async function handleBlur({ target }) {
-        const responseCep = await fetch(
-            `https://viacep.com.br/ws/${form.cep}/json/`
-        );
-        const { logradouro, bairro, localidade, uf } = await responseCep.json();
+    async function handleBlur() {
+        if (form.cep.length >= 8) {
+            const responseCep = await fetch(
+                `https://viacep.com.br/ws/${form.cep}/json/`
+            );
+            const { logradouro, bairro, localidade, uf } =
+                await responseCep.json();
 
-        setForm({
-            ...form,
-            cep: target.value,
-            rua: logradouro,
-            bairro,
-            cidade: localidade,
-            estado: uf,
-        });
+            setForm({
+                ...form,
+                rua: logradouro,
+                bairro,
+                cidade: localidade,
+                estado: uf,
+            });
+        }
         console.log(form);
     }
 
