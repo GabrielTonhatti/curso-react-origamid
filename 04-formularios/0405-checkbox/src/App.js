@@ -1,5 +1,11 @@
 import React from "react";
 
+// Otimize o código do slide anterior
+// Utilizando a array abaixo para mostrar
+// cada checkbox na tela.
+
+const coresArray = ["azul", "roxo", "laranja", "verde", "vermelho", "cinza"];
+
 const App = () => {
     const [cores, setCores] = React.useState(["vermelho"]);
 
@@ -11,26 +17,28 @@ const App = () => {
         }
     }
 
+    function handleChecked(cor) {
+        return cores.includes(cor);
+    }
+
     return (
         <form>
-            <label>
-                <input
-                    type="checkbox"
-                    value="azul"
-                    checked={cores.includes("azul")}
-                    onChange={handleChange}
-                />
-                Azul
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    value="vermelho"
-                    checked={cores.includes("vermelho")}
-                    onChange={handleChange}
-                />
-                Vermelho
-            </label>
+            {coresArray.map((cor) => (
+                <label key={cor}>
+                    <input
+                        type="checkbox"
+                        value={cor}
+                        checked={handleChecked(cor)}
+                        onChange={handleChange}
+                    />
+                    {cor}
+                </label>
+            ))}
+            <ul>
+                {cores.map((cor) => (
+                    <li key={cor}>{cor}</li>
+                ))}
+            </ul>
         </form>
     );
 };
