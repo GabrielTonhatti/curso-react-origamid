@@ -64,9 +64,7 @@ const Form = () => {
 
         // Mostre uma mensagem na tela, caso a resposta da API seja positiva
         setResponse(
-            resposta.status > 200 && resposta.status > 399
-                ? json.message
-                : "Formulário enviado!"
+            resposta.status > 400 ? json.message : "Formulário enviado!"
         );
         setForm({
             nome: "",
