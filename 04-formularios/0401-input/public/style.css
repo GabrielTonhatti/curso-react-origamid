@@ -57,7 +57,6 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="number"],
 textarea {
     display: block;
     border: 1px solid #ccc;
@@ -72,7 +71,6 @@ textarea {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
-input[type="number"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--color);
