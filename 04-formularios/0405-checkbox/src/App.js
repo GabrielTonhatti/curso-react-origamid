@@ -7,7 +7,7 @@ import React from "react";
 const coresArray = ["azul", "roxo", "laranja", "verde", "vermelho", "cinza"];
 
 const App = () => {
-    const [cores, setCores] = React.useState(["vermelho"]);
+    const [cores, setCores] = React.useState(["azul", "verde"]);
 
     function handleChange({ target }) {
         if (target.checked) {
@@ -23,8 +23,8 @@ const App = () => {
 
     return (
         <form>
-            {coresArray.map((cor) => (
-                <label key={cor}>
+            {coresArray.map((cor, index) => (
+                <label key={index} style={{ textTransform: "capitalize" }}>
                     <input
                         type="checkbox"
                         value={cor}
@@ -34,11 +34,6 @@ const App = () => {
                     {cor}
                 </label>
             ))}
-            <ul>
-                {cores.map((cor) => (
-                    <li key={cor}>{cor}</li>
-                ))}
-            </ul>
         </form>
     );
 };
