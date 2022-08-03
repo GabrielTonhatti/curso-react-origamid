@@ -14,6 +14,7 @@ const Form = () => {
         estado: "",
     });
     const [response, setResponse] = React.useState(null);
+    const timeoutRef = React.useRef(null);
 
     function handleChange({ target }) {
         const { id, value } = target;
@@ -77,6 +78,11 @@ const Form = () => {
             cidade: "",
             estado: "",
         });
+
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+            setResponse(null);
+        }, 10000);
         console.log(event);
     }
 
