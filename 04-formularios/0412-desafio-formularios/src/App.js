@@ -36,41 +36,54 @@ const perguntas = [
     },
 ];
 const App = () => {
-    const [index, setIndex] = React.useState(0);
-    const [resposta, setResposta] = React.useState("");
-    const [qtdeRespostasCorretas, setQtdeRespostasCorretas] = React.useState(0);
+    const [respostas, setRespostas] = React.useState({
+        p1: "",
+        p2: "",
+        p3: "",
+        p4: "",
+    });
+    const [slide, setSlide] = React.useState(0);
+    const [resultado, setResultado] = React.useState(null);
 
-    function handleSubmit(event) {
-        event.preventDefault();
+    function resultadoFinal() {
+        console.log("Final");
+        const corretas = perguntas.filter(
+            ({ id, resposta }) => respostas[id] === resposta
+        );
 
-        if (resposta === perguntas[index].resposta) {
-            setQtdeRespostasCorretas(qtdeRespostasCorretas + 1);
-        }
-
-        setIndex(index + 1);
-        console.log(index);
+        setResultado(`Você acertou ${corretas.length} de ${perguntas.length}`);
+        console.log(corretas);
     }
 
+    function handleClick() {
+        if (slide < perguntas.length - 1) {
+            setSlide(slide + 1);
+        } else {
+            setSlide(slide + 1);
+            resultadoFinal();
+        }
+    }
+
+    function handleChange({ target }) {
+        setRespostas({ ...respostas, [target.id]: target.value });
+    }
     return (
-        <>
-            {index < perguntas.length ? (
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <h2>{perguntas[index].pergunta}</h2>
-                        <Radio
-                            options={perguntas[index].options}
-                            value={resposta}
-                            setValue={setResposta}
-                        />
-                        <button>Próxima</button>
-                    </form>
-                </div>
+        <form onSubmit={(event) => event.preventDefault()}>
+            {perguntas.map((pergunta, index) => (
+                <Radio
+                    active={slide === index}
+                    key={pergunta.id}
+                    onChange={handleChange}
+                    value={respostas[pergunta.id]}
+                    {...pergunta}
+                />
+            ))}
+            {resultado ? (
+                <p>{resultado}</p>
             ) : (
-                <p>
-                    Você acertou: {qtdeRespostasCorretas} de {perguntas.length}
-                </p>
+                <button onClick={handleClick}>Próxima</button>
             )}
-        </>
+        </form>
     );
 };
 
