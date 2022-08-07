@@ -39,7 +39,7 @@ const LoginForm = () => {
                 />
                 {loading ? (
                     <Button disabled>
-                        <div className={styles.loading}></div>
+                        <div className="loading-button"></div>
                     </Button>
                 ) : (
                     <Button>Entrar</Button>
