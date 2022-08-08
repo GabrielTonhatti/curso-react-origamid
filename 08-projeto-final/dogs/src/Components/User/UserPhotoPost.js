@@ -51,7 +51,6 @@ const UserPhotoPost = () => {
                 <Input label="Peso" type="number" name="peso" {...peso} />
                 <Input label="Idade" type="number" name="idade" {...idade} />
                 <InputFile
-                    type="file"
                     name="img"
                     id="img"
                     label="Selecione uma imagem"
