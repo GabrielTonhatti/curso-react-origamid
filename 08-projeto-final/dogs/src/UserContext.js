@@ -18,7 +18,6 @@ export const UserStorage = ({ children }) => {
 
         setData(json);
         setLogin(true);
-        console.log(json);
     }
 
     async function userLogin(username, password) {
