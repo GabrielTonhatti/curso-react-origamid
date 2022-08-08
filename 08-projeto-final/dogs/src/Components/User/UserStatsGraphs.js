@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./UserStatsGraphs.module.css";
 import { VictoryPie, VictoryChart, VictoryBar, VictoryTheme } from "victory";
+import { colorGraphs } from "../utils/colorGraphs";
 
 const UserStatsGraphs = ({ data }) => {
     const [graph, setGraph] = React.useState([]);
@@ -19,7 +20,6 @@ const UserStatsGraphs = ({ data }) => {
         );
 
         setGraph(graphData);
-        console.log(data);
     }, [data]);
 
     return (
@@ -43,13 +43,18 @@ const UserStatsGraphs = ({ data }) => {
                             fill: "#333",
                         },
                     }}
-                    colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
-                    theme={VictoryTheme.material}
+                    colorScale={colorGraphs}
                 />
             </div>
             <div className={`${styles.graphItem}`}>
-                <VictoryChart>
-                    <VictoryBar alignment="start" data={graph}></VictoryBar>
+                <VictoryChart theme={VictoryTheme.material}>
+                    <VictoryBar
+                        alignment="start"
+                        data={graph}
+                        style={{
+                            data: { fill: "#c43a31" },
+                        }}
+                    ></VictoryBar>
                 </VictoryChart>
             </div>
         </section>
