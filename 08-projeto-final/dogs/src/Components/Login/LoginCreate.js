@@ -7,6 +7,7 @@ import Button from "../Forms/Button";
 import Error from "../Helper/Error";
 import Input from "../Forms/Input";
 import ButtonLoading from "../Forms/ButtonLoading";
+import Head from "../Helper/Head";
 
 const LoginCreate = () => {
     const username = useForm();
@@ -32,6 +33,7 @@ const LoginCreate = () => {
 
     return (
         <section className="animeLeft">
+            <Head title="Crie sua conta" />
             <h1 className="title">Cadastre-se</h1>
             <form onSubmit={handleSubmit}>
                 <Input
