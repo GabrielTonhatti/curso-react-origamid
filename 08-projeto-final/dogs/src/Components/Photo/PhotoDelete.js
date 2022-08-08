@@ -2,7 +2,6 @@ import React from "react";
 import { PHOTO_DELETE } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import styles from "./PhotoDelete.module.css";
-import Button from "../Forms/Button";
 
 const PhotoDelete = ({ id }) => {
     const { loading, request } = useFetch();
@@ -22,8 +21,7 @@ const PhotoDelete = ({ id }) => {
         <>
             {loading ? (
                 <button className={styles.delete} disabled>
-                    {/* <div className="loading-button"></div> */}
-                    Deletar
+                    <div className="loading-button"></div>
                 </button>
             ) : (
                 <button onClick={handleClick} className={styles.delete}>
