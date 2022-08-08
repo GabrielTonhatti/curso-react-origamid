@@ -4,6 +4,7 @@ import { PHOTO_POST } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import useForm from "../../Hooks/useForm";
 import Button from "../Forms/Button";
+import ButtonLoading from "../Forms/ButtonLoading";
 import Input from "../Forms/Input";
 import InputFile from "../Forms/InputFile";
 import Error from "../Helper/Error";
@@ -57,13 +58,7 @@ const UserPhotoPost = () => {
                     onChange={handleImgChange}
                     value={img.name}
                 />
-                {loading ? (
-                    <Button disabled>
-                        <div className="loading-button"></div>
-                    </Button>
-                ) : (
-                    <Button>Enviar</Button>
-                )}
+                {loading ? <ButtonLoading /> : <Button>Enviar</Button>}
                 <Error error={error} />
             </form>
             <div>

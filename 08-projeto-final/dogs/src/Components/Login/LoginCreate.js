@@ -6,6 +6,7 @@ import { UserContext } from "../../UserContext";
 import Button from "../Forms/Button";
 import Error from "../Helper/Error";
 import Input from "../Forms/Input";
+import ButtonLoading from "../Forms/ButtonLoading";
 
 const LoginCreate = () => {
     const username = useForm();
@@ -27,8 +28,6 @@ const LoginCreate = () => {
         const { response } = await request(url, options);
 
         if (response.ok) userLogin(username.value, password.value);
-
-        console.log(response);
     }
 
     return (
@@ -48,13 +47,7 @@ const LoginCreate = () => {
                     name="password"
                     {...password}
                 />
-                {loading ? (
-                    <Button disabled>
-                        <div className="loading-button"></div>
-                    </Button>
-                ) : (
-                    <Button>Cadastrar</Button>
-                )}
+                {loading ? <ButtonLoading /> : <Button>Cadastrar</Button>}
                 <Error error={error} />
             </form>
         </section>
