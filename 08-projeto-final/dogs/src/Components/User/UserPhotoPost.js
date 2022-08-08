@@ -5,6 +5,7 @@ import useFetch from "../../Hooks/useFetch";
 import useForm from "../../Hooks/useForm";
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
+import InputFile from "../Forms/InputFile";
 import Error from "../Helper/Error";
 import styles from "./UserPhotoPost.module.css";
 
@@ -35,9 +36,11 @@ const UserPhotoPost = () => {
     }
 
     function handleImgChange({ target }) {
+        console.log(target.files[0]);
         setImg({
             preview: URL.createObjectURL(target.files[0]),
             raw: target.files[0],
+            name: target.files[0].name,
         });
     }
 
@@ -47,12 +50,14 @@ const UserPhotoPost = () => {
                 <Input label="Nome" type="text" name="nome" {...nome} />
                 <Input label="Peso" type="number" name="peso" {...peso} />
                 <Input label="Idade" type="number" name="idade" {...idade} />
-                <input
-                    className={styles.file}
+                <InputFile
                     type="file"
                     name="img"
                     id="img"
+                    label="Selecione uma imagem"
+                    accept="image/*"
                     onChange={handleImgChange}
+                    value={img.name}
                 />
                 {loading ? (
                     <Button disabled>
