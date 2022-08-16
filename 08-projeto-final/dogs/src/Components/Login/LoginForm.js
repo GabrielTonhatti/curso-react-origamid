@@ -8,6 +8,7 @@ import Error from "../Helper/Error";
 import styles from "./LoginForm.module.css";
 import stylesBtn from "../Forms/Button.module.css";
 import Head from "../Helper/Head";
+import ButtonLoading from "../Forms/ButtonLoading";
 
 const LoginForm = () => {
     const username = useForm();
@@ -39,13 +40,7 @@ const LoginForm = () => {
                     name="password"
                     {...password}
                 />
-                {loading ? (
-                    <Button disabled>
-                        <div className="loading-button"></div>
-                    </Button>
-                ) : (
-                    <Button>Entrar</Button>
-                )}
+                {loading ? <ButtonLoading /> : <Button>Entrar</Button>}
                 <Error error={error && "Dados incorretos."} />
             </form>
             <Link className={styles.perdeu} to="/login/perdeu">
